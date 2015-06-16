@@ -1482,7 +1482,7 @@ static int __devinit ts_probe(struct i2c_client *client,
 	if (ts->client->irq) {
 		ret = request_threaded_irq(ts->client->irq, NULL,
 					 ts_irq_handler,
-					 IRQF_TRIGGER_LOW | IRQF_ONESHOT,
+					 IRQF_TRIGGER_LOW | IRQF_ONESHOT | IRQF_NO_SUSPEND | IRQF_EARLY_RESUME,
 					 ts->client->name, ts);
 		if (ret > 0) {
 			pr_err("tsp: ts_probe: Can't register irq %d, ret %d\n",
